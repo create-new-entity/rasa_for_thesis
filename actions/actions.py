@@ -31,10 +31,10 @@ import aiohttp
 
 class ActionShowLibrary(Action):
   
-  def name(self) -> Text:
+  def name(self):
     return "action_show_library"
 
-  def run(self, dispatcher, tracker, domain) -> List[Dict[Text, Any]]:
+  def run(self, dispatcher, tracker, domain):
     print('here came')
     dispatcher.utter_message(text="Will see")
     return []
