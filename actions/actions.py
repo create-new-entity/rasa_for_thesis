@@ -4,14 +4,25 @@
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
 
+
 # This is a simple example for a custom action which utters "Hello World!"
 
 from typing import Any, Text, Dict, List
+
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
-import asyncio
-import aiohttp
+
+class ActionShowLibrary(Action):
+  
+  def name(self):
+    return "action_show_library"
+  
+  def run(self, dispatcher, tracker, domain):
+
+    dispatcher.utter_message(text="Will see")
+
+    return []
 
 #
 #
@@ -27,14 +38,3 @@ import aiohttp
 #         dispatcher.utter_message(text="Hello World!")
 #
 #         return []
-
-
-class ActionShowLibrary(Action):
-  
-  def name(self):
-    return "action_show_library"
-
-  def run(self, dispatcher, tracker, domain):
-    print('here came')
-    dispatcher.utter_message(text="Will see")
-    return []

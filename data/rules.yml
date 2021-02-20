@@ -12,7 +12,8 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: Will see
+
+- rule: User asks for library
   steps:
   - intent: show_library
   - action: action_show_library
