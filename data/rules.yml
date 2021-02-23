@@ -17,3 +17,8 @@ rules:
   steps:
   - intent: show_library
   - action: action_show_library
+
+- rule: User wants to see balance
+  steps:
+  - intent: check_balance
+  - action: action_check_balance

@@ -97,3 +97,9 @@ nlu:
     - What are the games do I have?
     - Please show me my games
     - Please list the games I own
+
+- intent: check_balance
+  examples: |
+    - Show me my balance please
+    - How much money I have got left?
+    - What is my current balance?

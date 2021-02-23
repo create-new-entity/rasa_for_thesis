@@ -21,8 +21,17 @@ intents:
     use_entities: true
 - show_library:
     use_entities: true
+- check_balance:
+    use_entities: true
 entities: []
-slots: {}
+slots:
+  balance:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    max_value: 1.0
+    min_value: 0.0
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -37,7 +46,13 @@ responses:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
+  utter_balance:
+  - text: Your current balance is {balance} euro(s)
+  - text: You've {balance} euro(s) in your account
+  - text: Balance is {balance} euro(s)
+  - text: You have {balance} euro(s) left
 actions:
 - action_show_library
+- action_check_balance
 forms: {}
 e2e_actions: []

@@ -6,11 +6,34 @@
 
 
 # This is a simple example for a custom action which utters "Hello World!"
+import aiohttp
 
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+
+BASE_URL = 'http://46.101.213.221:3009/thesis_bot_backend/'
+
+CHECK_BALANCE = BASE_URL + 'common/check_balance'
+SET_BALANCE = BASE_URL + 'common/set_balance'
+CHECK_AFFORDABILITY = BASE_URL + 'common/check_affordability'
+ADD_TO_LIBRARY = BASE_URL + 'common/add_to_library'
+REMOVE_FROM_LIBRARY = BASE_URL + 'common/remove_from_library'
+SHOW_AVAILABLE_GAMES = BASE_URL + 'common/show_available_games'
+
+
+class ActionCheckBalance(Action):
+
+  def name(self):
+    return "action_check_balance"
+
+  async def run(self, dispatcher, tracker, domain):
+    async with aiohttp.ClientSession() as session:
+      async with session.get(CHECK_BALANCE) as resp:
+        result = await resp.json()
+        dispatcher.utter_message(template="utter_balance", balance=result['balance'])
+    return []
 
 
 class ActionShowLibrary(Action):
