@@ -103,3 +103,9 @@ nlu:
     - Show me my balance please
     - How much money I have got left?
     - What is my current balance?
+
+- intent: show_available_games
+  examples: |
+    - Show me the available games
+    - What games are available now?
+    - What games can I buy now?

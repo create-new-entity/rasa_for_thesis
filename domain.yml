@@ -23,6 +23,8 @@ intents:
     use_entities: true
 - check_balance:
     use_entities: true
+- show_available_games:
+    use_entities: true
 entities: []
 slots:
   balance:
@@ -32,6 +34,11 @@ slots:
     influence_conversation: true
     max_value: 1.0
     min_value: 0.0
+  available_games:
+    type: rasa.shared.core.slots.ListSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -54,5 +61,6 @@ responses:
 actions:
 - action_show_library
 - action_check_balance
+- action_show_available_games
 forms: {}
 e2e_actions: []

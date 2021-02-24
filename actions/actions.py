@@ -7,11 +7,13 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 import aiohttp
+import pydash
 
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
 
 BASE_URL = 'http://46.101.213.221:3009/thesis_bot_backend/'
 
@@ -46,6 +48,20 @@ class ActionShowLibrary(Action):
     dispatcher.utter_message(text="Will see")
 
     return []
+
+
+
+class ActionShowAvailableGames(Action):
+  
+  def name(self):
+    return "action_show_available_games"
+
+  async def run(self, dispatcher, tracker, domain):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(SHOW_AVAILABLE_GAMES) as resp:
+          result = await resp.json()
+          dispatcher.utter_message(text='\n'.join(pydash.map_(result, 'name')))
+          return [SlotSet("available_games", result)]
 
 #
 #

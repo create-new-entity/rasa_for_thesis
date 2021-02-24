@@ -22,3 +22,8 @@ rules:
   steps:
   - intent: check_balance
   - action: action_check_balance
+
+- rule: User wants to see available games
+  steps:
+  - intent: show_available_games
+  - action: action_show_available_games
