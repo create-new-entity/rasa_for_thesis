@@ -27,3 +27,8 @@ rules:
   steps:
   - intent: show_available_games
   - action: action_show_available_games
+
+- rule: Add game to cart
+  steps:
+  - intent: add_to_cart
+  - action: action_add_to_cart

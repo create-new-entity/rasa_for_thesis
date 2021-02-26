@@ -15,7 +15,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 
-BASE_URL = 'http://46.101.213.221:3009/thesis_bot_backend/'
+BASE_URL = 'http://localhost:3009/thesis_bot_backend/'
 
 CHECK_BALANCE = BASE_URL + 'common/check_balance'
 SET_BALANCE = BASE_URL + 'common/set_balance'
@@ -24,6 +24,44 @@ ADD_TO_LIBRARY = BASE_URL + 'common/add_to_library'
 REMOVE_FROM_LIBRARY = BASE_URL + 'common/remove_from_library'
 SHOW_AVAILABLE_GAMES = BASE_URL + 'common/show_available_games'
 
+
+class ActionAddToCart(Action):
+
+  def name(self):
+    return "action_add_to_cart"
+
+  async def run(self, dispatcher, tracker, domain):
+    # print(next(tracker.get_latest_entity_values("game")))
+    # print(next(tracker.get_latest_entity_values("game")))
+    # print(next(tracker.get_latest_entity_values("game")))
+    async with aiohttp.ClientSession() as session:
+      async with session.get(SHOW_AVAILABLE_GAMES) as resp:
+        result = await resp.json()
+
+        available_games = pydash.map_(result, 'name')
+        new_games_in_cart = pydash.map_(tracker.latest_message['entities'], 'value')
+        new_cart_games = []
+
+        previously_in_cart = tracker.get_slot('shopping_cart');
+        print()
+        print('Previously in cart:')
+        print(previously_in_cart)
+        print()
+
+        if(previously_in_cart):
+          new_cart_games = [*previously_in_cart]
+
+        for new_game in new_games_in_cart:
+          for game in available_games:
+            if(new_game in game and game not in new_cart_games):
+              new_cart_games.append(game)
+              break
+
+        
+
+    print(tracker.latest_message['entities'])
+    dispatcher.utter_message(text="Will see")
+    return [SlotSet("shopping_cart", new_cart_games)]
 
 class ActionCheckBalance(Action):
 

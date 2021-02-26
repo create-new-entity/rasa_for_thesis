@@ -1,5 +1,4 @@
 version: "2.0"
-
 nlu:
 - intent: greet
   examples: |
@@ -16,7 +15,6 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-
 - intent: goodbye
   examples: |
     - good afternoon
@@ -30,7 +28,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -39,7 +36,6 @@ nlu:
     - of course
     - that sounds good
     - correct
-
 - intent: deny
   examples: |
     - no
@@ -49,7 +45,6 @@ nlu:
     - don't like that
     - no way
     - not really
-
 - intent: mood_great
   examples: |
     - perfect
@@ -66,7 +61,6 @@ nlu:
     - so so perfect
     - so good
     - so perfect
-
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -83,29 +77,43 @@ nlu:
     - extremly sad
     - so saad
     - so sad
-
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-
 - intent: show_library
   examples: |
     - What games do I own?
     - What are the games do I have?
     - Please show me my games
     - Please list the games I own
-
 - intent: check_balance
   examples: |
     - Show me my balance please
     - How much money I have got left?
     - What is my current balance?
-
 - intent: show_available_games
   examples: |
     - Show me the available games
     - What games are available now?
     - What games can I buy now?
+- intent: add_to_cart
+  examples: |
+    - Add [Ryse: Son of Rome](game) to cart
+    - Add [Vampyr](game) and [Ryse: Son of Rome](game) to cart
+    - Add [Ghost of Tsushima](game), [Vampyr](game) and [Ryse: Son of Rome](game) to cart
+    - Add [Ghost of Tsushima](game) to cart
+    - Add [Darksiders](game), [Vampyr](game) to cart
+    - Add [Horizon Zero Dawn](game), [Red Dead Redemption 2](game) to cart
+    - Include [Grand Theft Auto V](game) to cart
+    - Add [Hellblade: Senua's Sacrifice](game) to cart
+    - Add [The Witcher 3: Wild Hunt](game) and [Ryse: Son of Rome](game) to cart
+    - Add [Ryse: Son of Rome](game) and [L.A. Noire](game) to cart
+    - Add [L.A. Noire](game) to cart
+    - Add [A Plague Tale: Innocence](game) to cart
+    - Add [A Plague Tale: Innocence](game) and [L.A. Noire](game) to cart
+    - Add [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) to cart
+
+

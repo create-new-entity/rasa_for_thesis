@@ -25,7 +25,10 @@ intents:
     use_entities: true
 - show_available_games:
     use_entities: true
-entities: []
+- add_to_cart:
+    use_entities: true
+entities:
+- game
 slots:
   balance:
     type: rasa.shared.core.slots.FloatSlot
@@ -35,6 +38,11 @@ slots:
     max_value: 1.0
     min_value: 0.0
   available_games:
+    type: rasa.shared.core.slots.ListSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  shopping_cart:
     type: rasa.shared.core.slots.ListSlot
     initial_value: null
     auto_fill: true
@@ -62,5 +70,6 @@ actions:
 - action_show_library
 - action_check_balance
 - action_show_available_games
+- action_add_to_cart
 forms: {}
 e2e_actions: []
