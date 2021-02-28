@@ -25,6 +25,19 @@ REMOVE_FROM_LIBRARY = BASE_URL + 'common/remove_from_library'
 SHOW_AVAILABLE_GAMES = BASE_URL + 'common/show_available_games'
 
 
+class ActionShowCart(Action):
+  def name(self):
+    return "action_show_cart"
+
+  async def run(self, dispatcher, tracker, domain):
+    previously_in_cart = tracker.get_slot('shopping_cart');
+    if(previously_in_cart):
+      dispatcher.utter_message(text='\n'.join(previously_in_cart));
+    else:
+      dispatcher.utter_message(template='utter_cart_is_empty')
+    return []
+
+
 class ActionAddToCart(Action):
 
   def name(self):
@@ -43,9 +56,12 @@ class ActionAddToCart(Action):
         new_cart_games = []
 
         previously_in_cart = tracker.get_slot('shopping_cart');
+
+        print()
         print()
         print('Previously in cart:')
         print(previously_in_cart)
+        print()
         print()
 
         if(previously_in_cart):
@@ -56,12 +72,10 @@ class ActionAddToCart(Action):
             if(new_game in game and game not in new_cart_games):
               new_cart_games.append(game)
               break
-
         
-
-    print(tracker.latest_message['entities'])
-    dispatcher.utter_message(text="Will see")
-    return [SlotSet("shopping_cart", new_cart_games)]
+        print(tracker.latest_message['entities'])
+        dispatcher.utter_message(text="Will see")
+        return [SlotSet("shopping_cart", new_cart_games)]
 
 class ActionCheckBalance(Action):
 

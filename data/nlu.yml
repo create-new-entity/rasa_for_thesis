@@ -99,6 +99,15 @@ nlu:
     - Show me the available games
     - What games are available now?
     - What games can I buy now?
+- intent: show_cart_items
+  examples: |
+    - What games do I have in the cart?
+    - Show me the list of games in my cart.
+    - Please show me my cart.
+    - What games have been added to cart?
+    - What games have you added to cart?
+    - What games are in my cart?
+    - What are the items now in my cart?
 - intent: add_to_cart
   examples: |
     - Add [Ryse: Son of Rome](game) to cart

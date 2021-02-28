@@ -27,6 +27,8 @@ intents:
     use_entities: true
 - add_to_cart:
     use_entities: true
+- show_cart_items:
+    use_entities: true
 entities:
 - game
 slots:
@@ -66,10 +68,16 @@ responses:
   - text: You've {balance} euro(s) in your account
   - text: Balance is {balance} euro(s)
   - text: You have {balance} euro(s) left
+  utter_cart_is_empty:
+  - text: Your cart is empty at the moment.
+  - text: You don't have anything in the cart.
+  - text: You haven't added anything or removed everything from cart.
+  - text: There is nothing in the cart at the moment.
 actions:
 - action_show_library
 - action_check_balance
 - action_show_available_games
 - action_add_to_cart
+- action_show_cart
 forms: {}
 e2e_actions: []

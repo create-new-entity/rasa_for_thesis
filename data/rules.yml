@@ -32,3 +32,8 @@ rules:
   steps:
   - intent: add_to_cart
   - action: action_add_to_cart
+
+- rule: Show cart items
+  steps:
+  - intent: show_cart_items
+  - action: action_show_cart
