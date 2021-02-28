@@ -89,6 +89,7 @@ nlu:
     - What are the games do I have?
     - Please show me my games
     - Please list the games I own
+    - Show me my library.
 - intent: check_balance
   examples: |
     - Show me my balance please
@@ -160,7 +161,6 @@ nlu:
     - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
     - Remove [Vampyr](game) from cart
     - Remove [Darksiders](game) from cart
-
 - intent: is_cart_affordable
   examples: |
     - Can I afford the games in my cart?
@@ -168,5 +168,11 @@ nlu:
     - Do I have enough money to buy the games in my cart?
     - Do I have the money to buy all the games in my cart?
     - Can I afford this cart?
-    - Is the total cost of my cart affordable?
     - What is the cost of my current cart?
+- intent: buy_cart_items
+  examples: |
+    - Checkout
+    - Purchase the games in my cart.
+    - Buy the games in my cart.
+    - I want to buy the games in my cart.
+    - Checkout the items in my cart.

@@ -52,3 +52,8 @@ rules:
   steps:
   - intent: is_cart_affordable
   - action: action_is_cart_affordable
+
+- rule: Buy cart items
+  steps:
+  - intent: buy_cart_items
+  - action: action_buy_cart_items

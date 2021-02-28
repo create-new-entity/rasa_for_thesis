@@ -15,14 +15,16 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 
-BASE_URL = 'http://localhost:3009/thesis_bot_backend/'
+BASE_URL = 'http://localhost:3009/thesis_bot_backend/common/'
 
-CHECK_BALANCE = BASE_URL + 'common/check_balance'
-SET_BALANCE = BASE_URL + 'common/set_balance'
-CHECK_AFFORDABILITY = BASE_URL + 'common/check_affordability'
-ADD_TO_LIBRARY = BASE_URL + 'common/add_to_library'
-REMOVE_FROM_LIBRARY = BASE_URL + 'common/remove_from_library'
-SHOW_AVAILABLE_GAMES = BASE_URL + 'common/show_available_games'
+CHECK_BALANCE = BASE_URL + 'check_balance'
+SET_BALANCE = BASE_URL + 'set_balance'
+CHECK_AFFORDABILITY = BASE_URL + 'check_affordability'
+ADD_TO_LIBRARY = BASE_URL + 'add_to_library'
+REMOVE_FROM_LIBRARY = BASE_URL + 'remove_from_library'
+SHOW_AVAILABLE_GAMES = BASE_URL + 'show_available_games'
+SHOW_LIBRARY_GAMES = BASE_URL + 'show_library_games'
+PURCHASE = BASE_URL + 'purchase'
 
 
 
@@ -55,7 +57,6 @@ class ActionIsCartAffordable(Action):
         async with aiohttp.ClientSession() as session:
           async with session.get(CHECK_AFFORDABILITY, data=data) as resp:
             response = await resp.json()
-            print(response);
             if(response['can_afford']):
               dispatcher.utter_message(
                 template='utter_cart_affordable_yes',
@@ -116,7 +117,7 @@ class ActionRemoveFromCart(Action):
         dispatcher.utter_message(template='utter_cart_is_empty')
         return [SlotSet("shopping_cart", None)]
       else:
-        dispatcher.utter_message(text='\n'.join(new_cart_games))
+        dispatcher.utter_message(template="utter_removed_from_cart")
         return [SlotSet("shopping_cart", new_cart_games)]
     else:
       dispatcher.utter_message(template='utter_cart_is_empty')
@@ -174,6 +175,44 @@ class ActionAddToCart(Action):
         dispatcher.utter_message(template='utter_added_to_cart')
         return [SlotSet("shopping_cart", new_cart_games)]
 
+class ActionBuyCartItems(Action):
+  
+  def name(self):
+    return 'action_buy_cart_items'
+
+  async def run(self, dispatcher, tracker, domain):
+    available_games = tracker.get_slot('available_games')
+    currently_in_cart = tracker.get_slot('shopping_cart')
+    if(not currently_in_cart or not len(currently_in_cart)):
+      dispatcher.utter_message(template="utter_cart_is_empty")
+      return [SlotSet("shopping_cart", None)]
+    else:
+      game_ids = []
+      for game in currently_in_cart:
+        for available_game in available_games:
+          if(game == available_game['name']):
+            game_ids.append(available_game['game_id'])
+            break
+      if(len(game_ids)):
+        game_ids.append(-1)
+        data = {
+          'game_ids': game_ids
+        }
+        async with aiohttp.ClientSession() as session:
+          async with session.post(PURCHASE, data = data) as resp:
+            if(resp.status == 200):
+              dispatcher.utter_message(template='utter_purchase_success')
+              return [
+                SlotSet("shopping_cart", None),
+                SlotSet("balance", None)
+              ]
+            else:
+              dispatcher.utter_message(template='utter_purchase_filure')
+              return []
+      else:
+        dispatcher.utter_message(template="utter_cart_is_empty")
+        return [SlotSet("shopping_cart", None)]
+
 class ActionCheckBalance(Action):
 
   def name(self):
@@ -184,7 +223,7 @@ class ActionCheckBalance(Action):
       async with session.get(CHECK_BALANCE) as resp:
         result = await resp.json()
         dispatcher.utter_message(template="utter_balance", balance=result['balance'])
-    return []
+        return [SlotSet("balance", result['balance'])]
 
 
 class ActionShowLibrary(Action):
@@ -192,11 +231,15 @@ class ActionShowLibrary(Action):
   def name(self):
     return "action_show_library"
   
-  def run(self, dispatcher, tracker, domain):
-
-    dispatcher.utter_message(text="Will see")
-
-    return []
+  async def run(self, dispatcher, tracker, domain):
+    async with aiohttp.ClientSession() as session:
+      async with session.get(SHOW_LIBRARY_GAMES) as resp:
+        result = await resp.json()
+        if(result['library'] and len(result['library'])):
+          dispatcher.utter_message(text='\n'.join(pydash.map_(result['library'], 'name')))
+          return [SlotSet("library_games", result['library'])]
+        else:
+          return [SlotSet("library_games", None)]
 
 
 

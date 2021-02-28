@@ -35,6 +35,8 @@ intents:
     use_entities: []
 - is_cart_affordable:
     use_entities: []
+- buy_cart_items:
+    use_entities: []
 entities:
 - game
 slots:
@@ -59,6 +61,11 @@ slots:
     influence_conversation: true
     max_value: 1.0
     min_value: 0.0
+  library_games:
+    type: rasa.shared.core.slots.ListSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
   available_games:
     type: rasa.shared.core.slots.ListSlot
     initial_value: null
@@ -104,6 +111,11 @@ responses:
   - text: Games added to cart.
   - text: Items added to cart.
   - text: Ok, I've added them to cart.
+  utter_removed_from_cart:
+  - text: I've removed those games from your cart.
+  - text: Ok, I've removed those from your cart.
+  - text: Items removed from cart.
+  - text: Games removed from your cart.
   utter_cart_affordable_yes:
   - text: Yes, you have {balance} euro(s) in your account. Total cost of your cart is {total_cart_cost} euro(s)
   - text: Your current account has {balance} euro(s) and total cost of your cart is {total_cart_cost} euro(s). So yes, you can buy the stuffs in your cart.
@@ -112,6 +124,14 @@ responses:
   - text: No!, you have {balance} euro(s) in your account. Total cost of your cart is {total_cart_cost} euro(s)..You need to add {shortage} euro(s) in your account.
   - text: Your current account has {balance} euro(s) in your account. Total cost of your cart is {total_cart_cost} euro(s)..You need to add {shortage} euro(s) in your account.
   - text: No, You need to add {shortage} euro(s) in your account, you have {balance} euro(s) in your account. Total cost of your cart is {total_cart_cost} euro(s)..
+  utter_purchase_success:
+  - text: Transaction complete. Games have been added to your library.
+  - text: Purchase successful. Games have been added to your library.
+  - text: Checkout done. Check your library for new games.
+  utter_purchase_failure:
+  - text: Transaction failed. Something went wrong.
+  - text: Sorry, purchase could not be done at the moment.
+  - text: Checkout failed. Something went wrong.
 actions:
 - action_show_library
 - action_check_balance
@@ -121,5 +141,6 @@ actions:
 - action_remove_from_cart
 - action_remove_all_from_cart
 - action_is_cart_affordable
+- action_buy_cart_items
 forms: {}
 e2e_actions: []
