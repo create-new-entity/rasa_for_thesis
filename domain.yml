@@ -31,6 +31,8 @@ intents:
     use_entities: true
 - remove_from_cart:
     use_entities: true
+- remove_all_from_cart:
+    use_entities: []
 entities:
 - game
 slots:
@@ -75,6 +77,17 @@ responses:
   - text: You don't have anything in the cart.
   - text: You haven't added anything or removed everything from cart.
   - text: There is nothing in the cart at the moment.
+  utter_entire_cart_removed:
+  - text: I've deleted everything from cart.
+  - text: Your cart has been deleted.
+  - text: All games have been deleted from your cart.
+  - text: Your entire cart has been removed.
+  - text: I've nuked your cart.
+  utter_added_to_cart:
+  - text: I've added those games to your cart.
+  - text: Games added to cart.
+  - text: Items added to cart.
+  - text: Ok, I've added them to cart.
 actions:
 - action_show_library
 - action_check_balance
@@ -82,5 +95,6 @@ actions:
 - action_add_to_cart
 - action_show_cart
 - action_remove_from_cart
+- action_remove_all_from_cart
 forms: {}
 e2e_actions: []

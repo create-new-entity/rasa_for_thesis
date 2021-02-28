@@ -42,3 +42,8 @@ rules:
   steps:
   - intent: remove_from_cart
   - action: action_remove_from_cart
+
+- rule: Delete entire cart
+  steps:
+  - intent: remove_all_from_cart
+  - action: action_remove_all_from_cart

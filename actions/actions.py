@@ -25,6 +25,15 @@ REMOVE_FROM_LIBRARY = BASE_URL + 'common/remove_from_library'
 SHOW_AVAILABLE_GAMES = BASE_URL + 'common/show_available_games'
 
 
+class ActionRemoveEntireCart(Action):
+
+  def name(self):
+    return 'action_remove_all_from_cart'
+
+  def run(self, dispatcher, tracker, domain):
+    dispatcher.utter_message(template='utter_entire_cart_removed')
+    return [SlotSet("shopping_cart", None)]
+
 
 class ActionRemoveFromCart(Action):
 
@@ -48,7 +57,7 @@ class ActionRemoveFromCart(Action):
             new_cart_games.remove(current_cart_game)
       if(len(new_cart_games) == 0):
         dispatcher.utter_message(template='utter_cart_is_empty')
-        return [SlotSet("shopping_cart", [])]
+        return [SlotSet("shopping_cart", None)]
       else:
         dispatcher.utter_message(text='\n'.join(new_cart_games))
         return [SlotSet("shopping_cart", new_cart_games)]
@@ -96,8 +105,7 @@ class ActionAddToCart(Action):
               new_cart_games.append(game)
               break
         
-        print(tracker.latest_message['entities'])
-        dispatcher.utter_message(text="Will see")
+        dispatcher.utter_message(template='utter_added_to_cart')
         return [SlotSet("shopping_cart", new_cart_games)]
 
 class ActionCheckBalance(Action):

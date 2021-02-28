@@ -126,6 +126,20 @@ nlu:
     - Add [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) to cart
 
 
+- intent: remove_all_from_cart
+  examples: |
+    - Please delete my cart
+    - Remove my entire cart
+    - Delete my cart
+    - Remove my cart
+    - Empty my cart
+    - Nuke my cart
+    - Delete everything from cart
+    - Remove everything from cart
+    - Delete all games from cart
+    - Remove all items from cart
+    - Delete my cart entirely
+
 - intent: remove_from_cart
   examples: |
     - Remove [Ryse: Son of Rome](game) from cart
