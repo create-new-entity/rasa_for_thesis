@@ -25,6 +25,39 @@ REMOVE_FROM_LIBRARY = BASE_URL + 'common/remove_from_library'
 SHOW_AVAILABLE_GAMES = BASE_URL + 'common/show_available_games'
 
 
+
+class ActionRemoveFromCart(Action):
+
+  def name(self):
+    return 'action_remove_from_cart'
+
+
+  def run(self, dispatcher, tracker, domain):
+
+    previously_in_cart = tracker.get_slot('shopping_cart');
+    games_to_remove = []
+
+    if(previously_in_cart):
+
+      new_cart_games = [*previously_in_cart]
+      games_to_remove = pydash.map_(tracker.latest_message['entities'], 'value')
+
+      for game in games_to_remove:
+        for current_cart_game in [*new_cart_games]:
+          if(game in current_cart_game):
+            new_cart_games.remove(current_cart_game)
+      if(len(new_cart_games) == 0):
+        dispatcher.utter_message(template='utter_cart_is_empty')
+        return [SlotSet("shopping_cart", [])]
+      else:
+        dispatcher.utter_message(text='\n'.join(new_cart_games))
+        return [SlotSet("shopping_cart", new_cart_games)]
+    else:
+      dispatcher.utter_message(template='utter_cart_is_empty')
+      return []
+    
+
+
 class ActionShowCart(Action):
   def name(self):
     return "action_show_cart"
@@ -44,9 +77,6 @@ class ActionAddToCart(Action):
     return "action_add_to_cart"
 
   async def run(self, dispatcher, tracker, domain):
-    # print(next(tracker.get_latest_entity_values("game")))
-    # print(next(tracker.get_latest_entity_values("game")))
-    # print(next(tracker.get_latest_entity_values("game")))
     async with aiohttp.ClientSession() as session:
       async with session.get(SHOW_AVAILABLE_GAMES) as resp:
         result = await resp.json()
@@ -56,13 +86,6 @@ class ActionAddToCart(Action):
         new_cart_games = []
 
         previously_in_cart = tracker.get_slot('shopping_cart');
-
-        print()
-        print()
-        print('Previously in cart:')
-        print(previously_in_cart)
-        print()
-        print()
 
         if(previously_in_cart):
           new_cart_games = [*previously_in_cart]

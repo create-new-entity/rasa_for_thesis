@@ -37,3 +37,8 @@ rules:
   steps:
   - intent: show_cart_items
   - action: action_show_cart
+
+- rule: Remove from cart
+  steps:
+  - intent: remove_from_cart
+  - action: action_remove_from_cart

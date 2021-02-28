@@ -126,3 +126,21 @@ nlu:
     - Add [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) to cart
 
 
+- intent: remove_from_cart
+  examples: |
+    - Remove [Ryse: Son of Rome](game) from cart
+    - Delete [Vampyr](game) and [Ryse: Son of Rome](game) from cart
+    - Delete [Ghost of Tsushima](game), [Vampyr](game) and [Ryse: Son of Rome](game) from cart
+    - Remove [Ghost of Tsushima](game) from cart
+    - Remove [Darksiders](game), [Vampyr](game) from cart
+    - Remove [Horizon Zero Dawn](game), [Red Dead Redemption 2](game) from cart
+    - Exclude [Grand Theft Auto V](game) from cart
+    - Delete [Hellblade: Senua's Sacrifice](game) from cart
+    - Remove [The Witcher 3: Wild Hunt](game) and [Ryse: Son of Rome](game) from cart
+    - Delete [Ryse: Son of Rome](game) and [L.A. Noire](game) from cart
+    - Remove [L.A. Noire](game) from cart
+    - Delete [A Plague Tale: Innocence](game) from cart
+    - Delete [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
+    - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
+
+

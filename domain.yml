@@ -29,6 +29,8 @@ intents:
     use_entities: true
 - show_cart_items:
     use_entities: true
+- remove_from_cart:
+    use_entities: true
 entities:
 - game
 slots:
@@ -79,5 +81,6 @@ actions:
 - action_show_available_games
 - action_add_to_cart
 - action_show_cart
+- action_remove_from_cart
 forms: {}
 e2e_actions: []
