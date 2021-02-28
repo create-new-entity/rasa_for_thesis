@@ -33,10 +33,26 @@ intents:
     use_entities: true
 - remove_all_from_cart:
     use_entities: []
+- is_cart_affordable:
+    use_entities: []
 entities:
 - game
 slots:
   balance:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    max_value: 1.0
+    min_value: 0.0
+  shortage:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    max_value: 1.0
+    min_value: 0.0
+  total_cart_cost:
     type: rasa.shared.core.slots.FloatSlot
     initial_value: null
     auto_fill: true
@@ -88,6 +104,14 @@ responses:
   - text: Games added to cart.
   - text: Items added to cart.
   - text: Ok, I've added them to cart.
+  utter_cart_affordable_yes:
+  - text: Yes, you have {balance} euro(s) in your account. Total cost of your cart is {total_cart_cost} euro(s)
+  - text: Your current account has {balance} euro(s) and total cost of your cart is {total_cart_cost} euro(s). So yes, you can buy the stuffs in your cart.
+  - text: Yes, you have more than the cost in your account. Your account has {balance} euro(s) and the cost is {total_cart_cost} euro(s)
+  utter_cart_affordable_no:
+  - text: No!, you have {balance} euro(s) in your account. Total cost of your cart is {total_cart_cost} euro(s)..You need to add {shortage} euro(s) in your account.
+  - text: Your current account has {balance} euro(s) in your account. Total cost of your cart is {total_cart_cost} euro(s)..You need to add {shortage} euro(s) in your account.
+  - text: No, You need to add {shortage} euro(s) in your account, you have {balance} euro(s) in your account. Total cost of your cart is {total_cart_cost} euro(s)..
 actions:
 - action_show_library
 - action_check_balance
@@ -96,5 +120,6 @@ actions:
 - action_show_cart
 - action_remove_from_cart
 - action_remove_all_from_cart
+- action_is_cart_affordable
 forms: {}
 e2e_actions: []

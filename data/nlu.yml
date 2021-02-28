@@ -94,11 +94,14 @@ nlu:
     - Show me my balance please
     - How much money I have got left?
     - What is my current balance?
+    - What is my balance?
+    - How much money do I have in my account?
 - intent: show_available_games
   examples: |
     - Show me the available games
     - What games are available now?
     - What games can I buy now?
+    - What games are available?
 - intent: show_cart_items
   examples: |
     - What games do I have in the cart?
@@ -124,8 +127,7 @@ nlu:
     - Add [A Plague Tale: Innocence](game) to cart
     - Add [A Plague Tale: Innocence](game) and [L.A. Noire](game) to cart
     - Add [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) to cart
-
-
+    - Add [Vampyr](game), Battlefield: Bad Company 2 and [Darksiders](game) to my cart.
 - intent: remove_all_from_cart
   examples: |
     - Please delete my cart
@@ -139,7 +141,7 @@ nlu:
     - Delete all games from cart
     - Remove all items from cart
     - Delete my cart entirely
-
+    - Remove everything from my cart.
 - intent: remove_from_cart
   examples: |
     - Remove [Ryse: Son of Rome](game) from cart
@@ -156,5 +158,15 @@ nlu:
     - Delete [A Plague Tale: Innocence](game) from cart
     - Delete [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
     - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
+    - Remove [Vampyr](game) from cart
+    - Remove [Darksiders](game) from cart
 
-
+- intent: is_cart_affordable
+  examples: |
+    - Can I afford the games in my cart?
+    - Is the total cost of my cart affordable?
+    - Do I have enough money to buy the games in my cart?
+    - Do I have the money to buy all the games in my cart?
+    - Can I afford this cart?
+    - Is the total cost of my cart affordable?
+    - What is the cost of my current cart?

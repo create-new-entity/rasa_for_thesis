@@ -25,6 +25,63 @@ REMOVE_FROM_LIBRARY = BASE_URL + 'common/remove_from_library'
 SHOW_AVAILABLE_GAMES = BASE_URL + 'common/show_available_games'
 
 
+
+class ActionIsCartAffordable(Action):
+
+  def name(self):
+    return 'action_is_cart_affordable'
+
+  async def run(self, dispatcher, tracker, domain):
+    all_available_games = tracker.get_slot('available_games')
+    previously_in_cart = tracker.get_slot('shopping_cart')
+
+
+    if(previously_in_cart):
+
+      game_ids = []
+      for cart_game in previously_in_cart:
+        for available_game in all_available_games:
+          if(available_game['name'] == cart_game):
+            game_ids.append(available_game['game_id'])
+            break
+
+      if(len(game_ids)):
+
+        game_ids.append(-1)  # For some reason if there is only one element in array, req.body.game_ids on the node.js backend gets a single string which is that element instead of the array itself...?? That's why I am adding a decoy -1.
+        data = {
+          "game_ids": game_ids
+        }
+
+        async with aiohttp.ClientSession() as session:
+          async with session.get(CHECK_AFFORDABILITY, data=data) as resp:
+            response = await resp.json()
+            print(response);
+            if(response['can_afford']):
+              dispatcher.utter_message(
+                template='utter_cart_affordable_yes',
+                balance=response['balance'],
+                total_cart_cost=response['cost']
+              )
+            else:
+              dispatcher.utter_message(
+                template='utter_cart_affordable_no',
+                balance=response['balance'],
+                total_cart_cost=response['cost'],
+                shortage=response['shortage']
+              )
+            return [
+              SlotSet('balance', response['balance']),
+              SlotSet('total_cart_cost', response['cost']),
+              SlotSet('shortage', response['shortage'])
+            ]
+      else:
+        dispatcher.utter_message(template='utter_cart_is_empty')
+        return []
+    else:
+      dispatcher.utter_message(template='utter_cart_is_empty')
+      return []
+
+
 class ActionRemoveEntireCart(Action):
 
   def name(self):
@@ -72,9 +129,18 @@ class ActionShowCart(Action):
     return "action_show_cart"
 
   async def run(self, dispatcher, tracker, domain):
-    previously_in_cart = tracker.get_slot('shopping_cart');
+
+    all_available_games = tracker.get_slot('available_games')
+    previously_in_cart = tracker.get_slot('shopping_cart')
+
+    result = []
     if(previously_in_cart):
-      dispatcher.utter_message(text='\n'.join(previously_in_cart));
+      for game in previously_in_cart:
+        for available_game in all_available_games:
+          if(game == available_game['name']):
+            result.append(game + ' (Price: ' + str(available_game['price']) + ')')
+            break
+      dispatcher.utter_message(text='\n'.join(result));
     else:
       dispatcher.utter_message(template='utter_cart_is_empty')
     return []
@@ -143,7 +209,7 @@ class ActionShowAvailableGames(Action):
     async with aiohttp.ClientSession() as session:
         async with session.get(SHOW_AVAILABLE_GAMES) as resp:
           result = await resp.json()
-          dispatcher.utter_message(text='\n'.join(pydash.map_(result, 'name')))
+          dispatcher.utter_message(text='\n'.join(map(lambda game: game['name'] + ' (Price: ' + str(game['price']) + ')', result)))
           return [SlotSet("available_games", result)]
 
 #

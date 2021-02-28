@@ -47,3 +47,8 @@ rules:
   steps:
   - intent: remove_all_from_cart
   - action: action_remove_all_from_cart
+
+- rule: Check if cart is affordable
+  steps:
+  - intent: is_cart_affordable
+  - action: action_is_cart_affordable
