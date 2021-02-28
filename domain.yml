@@ -37,8 +37,11 @@ intents:
     use_entities: []
 - buy_cart_items:
     use_entities: []
+- add_money:
+    use_entities: true
 entities:
 - game
+- number
 slots:
   balance:
     type: rasa.shared.core.slots.FloatSlot
@@ -142,5 +145,6 @@ actions:
 - action_remove_all_from_cart
 - action_is_cart_affordable
 - action_buy_cart_items
+- action_add_money
 forms: {}
 e2e_actions: []

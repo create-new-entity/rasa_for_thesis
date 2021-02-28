@@ -226,6 +226,17 @@ class ActionCheckBalance(Action):
         return [SlotSet("balance", result['balance'])]
 
 
+class ActionAddMoney(Action):
+
+  def name(self):
+    return "action_add_money"
+
+  def run(self, dispatcher, tracker, domain):
+    print(tracker.latest_message['entities'])
+    dispatcher.utter_message(text='hmm')
+    return []
+
+
 class ActionShowLibrary(Action):
   
   def name(self):

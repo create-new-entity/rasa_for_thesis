@@ -57,3 +57,8 @@ rules:
   steps:
   - intent: buy_cart_items
   - action: action_buy_cart_items
+
+- rule: Add money
+  steps:
+  - intent: add_money
+  - action: action_add_money

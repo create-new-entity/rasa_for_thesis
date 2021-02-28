@@ -176,3 +176,8 @@ nlu:
     - Buy the games in my cart.
     - I want to buy the games in my cart.
     - Checkout the items in my cart.
+- intent: add_money
+  examples: |
+    - Add [10](number) euros to my account.
+    - Add [100](number) bucks to my balance.
+    - Include [50](number) bucks to my account. 
