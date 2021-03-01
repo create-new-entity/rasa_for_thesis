@@ -25,6 +25,7 @@ REMOVE_FROM_LIBRARY = BASE_URL + 'remove_from_library'
 SHOW_AVAILABLE_GAMES = BASE_URL + 'show_available_games'
 SHOW_LIBRARY_GAMES = BASE_URL + 'show_library_games'
 PURCHASE = BASE_URL + 'purchase'
+ADD_BALANCE = BASE_URL + 'add_balance'
 
 
 
@@ -168,7 +169,7 @@ class ActionAddToCart(Action):
 
         for new_game in new_games_in_cart:
           for game in available_games:
-            if(new_game in game and game not in new_cart_games):
+            if(new_game.lower() in game.lower() and game not in new_cart_games):
               new_cart_games.append(game)
               break
         
@@ -231,10 +232,26 @@ class ActionAddMoney(Action):
   def name(self):
     return "action_add_money"
 
-  def run(self, dispatcher, tracker, domain):
-    print(tracker.latest_message['entities'])
-    dispatcher.utter_message(text='hmm')
-    return []
+  async def run(self, dispatcher, tracker, domain):
+    amount = int(tracker.latest_message['entities'][0]['value'])
+    data = {
+      "amount": amount
+    }
+    async with aiohttp.ClientSession() as session:
+      async with session.post(ADD_BALANCE, data = data) as resp:
+        if(resp.status == 200):
+          response = await resp.json()
+          dispatcher.utter_message(template="utter_amount_added_success", balance=response['balance'], amount=response['amount'])
+          return [
+            SlotSet("balance", response['balance']),
+            SlotSet("amount", None)
+          ]
+        else:
+          dispatcher.utter_message(template="utter_amount_added_failure")
+          return [
+            SlotSet("balance", None),
+            SlotSet("amount", None)
+          ]
 
 
 class ActionShowLibrary(Action):

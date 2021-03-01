@@ -50,6 +50,13 @@ slots:
     influence_conversation: true
     max_value: 1.0
     min_value: 0.0
+  amount:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    max_value: 1.0
+    min_value: 0.0
   shortage:
     type: rasa.shared.core.slots.FloatSlot
     initial_value: null
@@ -135,6 +142,11 @@ responses:
   - text: Transaction failed. Something went wrong.
   - text: Sorry, purchase could not be done at the moment.
   - text: Checkout failed. Something went wrong.
+  utter_amount_added_success:
+  - text: I've added an amount of {amount} euro(s) to your account. New balance is {balance} euro(s).
+  - text: New balance is {balance} euro(s). An amount of {amount} euro(s) has been added to your account.
+  utter_amount_added_failure:
+  - text: Something went wrong, I could not add the amount.
 actions:
 - action_show_library
 - action_check_balance
