@@ -28,6 +28,40 @@ PURCHASE = BASE_URL + 'purchase'
 ADD_BALANCE = BASE_URL + 'add_balance'
 
 
+class ActionRemoveFromLibrary(Action):
+
+  def name(self):
+    return 'action_remove_game_from_library'
+
+  async def run(self, dispatcher, tracker, domain):
+    games_to_remove = pydash.map_(tracker.latest_message['entities'], 'value')
+    games_in_library = tracker.get_slot('library_games')
+    game_ids = []
+
+    for game_to_remove in games_to_remove:
+      for game_in_library in games_in_library:
+        if(game_to_remove.lower() in game_in_library['name'].lower() and not (game_in_library['game_id'] in game_ids)):
+          game_ids.append(game_in_library['game_id'])
+          break
+    print(game_ids)
+    game_ids.append(-1)
+    data = {
+      "game_ids": game_ids
+    }
+
+    async with aiohttp.ClientSession() as session:
+      async with session.post(REMOVE_FROM_LIBRARY, data=data) as resp:
+        response = await resp.json()
+        if(resp.status == 200):
+          dispatcher.utter_message(template='utter_remove_from_library_success')
+          if(len(response['library'])):
+            return [SlotSet('library_games', response['library'])]
+          else:
+            return [SlotSet('library_games', None)]
+        else:
+          dispatcher.utter_message(template='utter_remove_from_library_failure')
+          return []
+
 
 class ActionIsCartAffordable(Action):
 

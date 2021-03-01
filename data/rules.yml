@@ -62,3 +62,8 @@ rules:
   steps:
   - intent: add_money
   - action: action_add_money
+
+- rule: Remove game from library
+  steps:
+  - intent: remove_game_from_library
+  - action: action_remove_game_from_library

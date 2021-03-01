@@ -39,6 +39,8 @@ intents:
     use_entities: []
 - add_money:
     use_entities: true
+- remove_game_from_library:
+    use_entities: true
 entities:
 - game
 - number
@@ -147,6 +149,18 @@ responses:
   - text: New balance is {balance} euro(s). An amount of {amount} euro(s) has been added to your account.
   utter_amount_added_failure:
   - text: Something went wrong, I could not add the amount.
+  utter_library_is_empty:
+  - text: Your library is empty.
+  - text: You don't have any games in your library.
+  - text: Nothing found in your library.
+  utter_remove_from_library_success:
+  - text: Removed item(s) successfully.
+  - text: Removed game(s) successfully.
+  - text: Deleted item(s) successfully.
+  - text: Deleted game(s) successfully.
+  utter_remove_from_library_failure:
+  - text: Something went wrong, couldn't delete from library.
+  - text: Something went wrong, couldn't remove from library.
 actions:
 - action_show_library
 - action_check_balance
@@ -158,5 +172,6 @@ actions:
 - action_is_cart_affordable
 - action_buy_cart_items
 - action_add_money
+- action_remove_game_from_library
 forms: {}
 e2e_actions: []

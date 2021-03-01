@@ -134,6 +134,19 @@ nlu:
     - Add [A Plague Tale: Innocence](game) and [L.A. Noire](game) to cart
     - Add [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) to cart
     - Add [Vampyr](game), Battlefield: Bad Company 2 and [Darksiders](game) to my cart.
+    - Add [The Legend of Zelda: Breath of the Wild](game) to cart.
+    - Add [The Witcher 3: Wild Hunt](game) to cart
+    - Add [Metal Gear Solid V: The Phantom Pain](game) to cart.
+    - Include [Spec Ops: The Line](game) to cart.
+    - Add [Assassin’s Creed IV: Black Flag](game) to cart.
+    - Add [Monster Hunter: World](game) to cart
+    - Add [Kingdom Come: Deliverance](game) to cart
+    - Add [DOOM Eternal](game) to cart
+    - Add [Sleeping Dogs: Definitive Edition] to cart
+    - Add [Ryse: Son of Rome] to cart
+    - Add [Dark Souls: Remastered] to cart
+    - Add [Vampyr] to cart
+    - Add [A Plague Tale: Innocence] to cart
 - intent: remove_from_cart
   examples: |
     - Delete [Dark Souls: Remastered](game), [Vampyr](game), [Ryse: Son of Rome](game) and [BioShock](game) from cart.
@@ -157,6 +170,62 @@ nlu:
     - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
     - Remove [Vampyr](game) from cart
     - Remove [Darksiders](game) from cart
+    - Remove [Ryse: Son of Rome](game) from cart
+    - Remove [Vampyr](game) and [Ryse: Son of Rome](game) from cart
+    - Remove [Ghost of Tsushima](game), [Vampyr](game) and [Ryse: Son of Rome](game) from cart
+    - Remove [Ghost of Tsushima](game) from cart
+    - Remove [Darksiders](game), [Vampyr](game) from cart
+    - Remove [Horizon Zero Dawn](game), [Red Dead Redemption 2](game) from cart
+    - Delete [Grand Theft Auto V](game) from cart
+    - Remove [Hellblade: Senua's Sacrifice](game) from cart
+    - Remove [The Witcher 3: Wild Hunt](game) and [Ryse: Son of Rome](game) from cart
+    - Remove [Ryse: Son of Rome](game) and [L.A. Noire](game) from cart
+    - Remove [L.A. Noire](game) from cart
+    - Remove [DOOM Eternal](game) from cart
+    - Remove [A Plague Tale: Innocence](game) from cart
+    - Remove [Spec Ops: The Line](game) and [Assassin’s Creed IV: Black Flag](game) from cart
+    - Remove [Assassin’s Creed IV: Black Flag](game) from cart
+    - Remove [Sleeping Dogs: Definitive Edition](game) from cart
+    - Remove [Dark Souls: Remastered](game), [Vampyr](game), [Ryse: Son of Rome](game) and [BioShock](game) from cart.
+    - Remove [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
+    - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
+    - Remove [Vampyr](game), Battlefield: Bad Company 2 and [Darksiders](game) from my cart.
+    - Remove [The Legend of Zelda: Breath of the Wild](game) from cart.
+    - Remove [The Witcher 3: Wild Hunt](game) from cart
+    - Remove [Metal Gear Solid V: The Phantom Pain](game) from cart.
+    - Delete [Spec Ops: The Line](game) from cart.
+    - Remove [Assassin’s Creed IV: Black Flag](game) from cart.
+    - Remove [Monster Hunter: World](game) from cart
+    - Remove [Kingdom Come: Deliverance](game) from cart
+    - Remove [DOOM Eternal](game) from cart
+    - Remove [Sleeping Dogs: Definitive Edition] from cart
+    - Remove [Ryse: Son of Rome] from cart
+    - Remove [Dark Souls: Remastered] from cart
+    - Remove [Vampyr] from cart
+    - Remove [A Plague Tale: Innocence] from cart
+- intent: remove_game_from_library
+  examples: |
+    - Remove [Darksiders](game) from library
+    - Delete [Dark Souls: Remastered](game), [Vampyr](game), [Ryse: Son of Rome](game) and [BioShock](game) from library.
+    - Remove [Spec Ops: The Line](game) and [Assassin’s Creed IV: Black Flag](game) from library
+    - Remove [Assassin’s Creed IV: Black Flag](game) from library
+    - Remove [Sleeping Dogs: Definitive Edition](game) from library
+    - Remove [DOOM Eternal](game) from library
+    - Remove [Ryse: Son of Rome](game) from library
+    - Delete [Vampyr](game) and [Ryse: Son of Rome](game) from library
+    - Delete [Ghost of Tsushima](game), [Vampyr](game) and [Ryse: Son of Rome](game) from library
+    - Remove [Ghost of Tsushima](game) from library
+    - Remove [Darksiders](game), [Vampyr](game) from library
+    - Remove [Horizon Zero Dawn](game), [Red Dead Redemption 2](game) from library
+    - Exclude [Grand Theft Auto V](game) from library
+    - Delete [Hellblade: Senua's Sacrifice](game) from library
+    - Remove [The Witcher 3: Wild Hunt](game) and [Ryse: Son of Rome](game) from library
+    - Delete [Ryse: Son of Rome](game) and [L.A. Noire](game) from library
+    - Remove [L.A. Noire](game) from library
+    - Delete [A Plague Tale: Innocence](game) from library
+    - Delete [A Plague Tale: Innocence](game) and [L.A. Noire](game) from library
+    - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from library
+    - Remove [Vampyr](game) from library
 - intent: remove_all_from_cart
   examples: |
     - Please delete my cart
