@@ -142,11 +142,11 @@ nlu:
     - Add [Monster Hunter: World](game) to cart
     - Add [Kingdom Come: Deliverance](game) to cart
     - Add [DOOM Eternal](game) to cart
-    - Add [Sleeping Dogs: Definitive Edition] to cart
-    - Add [Ryse: Son of Rome] to cart
-    - Add [Dark Souls: Remastered] to cart
-    - Add [Vampyr] to cart
-    - Add [A Plague Tale: Innocence] to cart
+    - Add [Sleeping Dogs: Definitive Edition](game) to cart
+    - Add [Ryse: Son of Rome](game) to cart
+    - Add [Dark Souls: Remastered](game) to cart
+    - Add [Vampyr](game) to cart
+    - Add [A Plague Tale: Innocence](game) to cart
 - intent: remove_from_cart
   examples: |
     - Delete [Dark Souls: Remastered](game), [Vampyr](game), [Ryse: Son of Rome](game) and [BioShock](game) from cart.
