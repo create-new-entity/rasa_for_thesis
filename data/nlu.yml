@@ -198,11 +198,11 @@ nlu:
     - Remove [Monster Hunter: World](game) from cart
     - Remove [Kingdom Come: Deliverance](game) from cart
     - Remove [DOOM Eternal](game) from cart
-    - Remove [Sleeping Dogs: Definitive Edition] from cart
-    - Remove [Ryse: Son of Rome] from cart
-    - Remove [Dark Souls: Remastered] from cart
-    - Remove [Vampyr] from cart
-    - Remove [A Plague Tale: Innocence] from cart
+    - Remove [Sleeping Dogs: Definitive Edition](game) from cart
+    - Remove [Ryse: Son of Rome](game) from cart
+    - Remove [Dark Souls: Remastered](game) from cart
+    - Remove [Vampyr](game) from cart
+    - Remove [A Plague Tale: Innocence](game) from cart
 - intent: remove_game_from_library
   examples: |
     - Remove [Darksiders](game) from library
