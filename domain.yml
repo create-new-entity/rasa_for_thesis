@@ -45,6 +45,8 @@ intents:
     use_entities: true
 - nlu_fallback:
     use_entities: true
+- apply_preferance_to_available_games:
+    use_entities: true
 entities:
 - game
 - number
@@ -53,6 +55,11 @@ entities:
 - price
 - rating
 slots:
+  applied_available_games:
+    type: rasa.shared.core.slots.ListSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
   pre_form_slots:
     type: rasa.shared.core.slots.ListSlot
     initial_value: null
@@ -228,6 +235,7 @@ actions:
 - action_remove_game_from_library
 - action_updated_preferences
 - action_reset_pre_form_slots
+- action_apply_preferances_to_available_games
 forms:
   preferences_form:
     genre:

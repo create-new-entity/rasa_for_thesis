@@ -40,6 +40,58 @@ class ResetFormSlots(Action):
       SlotSet('rating', None)
     ]
 
+
+class ApplyPreferancesToAvailableGames(Action):
+
+  def name(self):
+    return 'action_apply_preferances_to_available_games'
+
+  async def run(self, dispatcher, tracker, domain):
+
+    pre_form_slots = tracker.get_slot('pre_form_slots')
+    available_games = tracker.get_slot('available_games')
+
+
+
+    if(not pre_form_slots):
+
+      dispatcher.utter_message(text='You have not told me your preferences')
+      return
+
+
+    else:
+
+      if(not available_games):
+        async with aiohttp.ClientSession() as session:
+          async with session.get(SHOW_AVAILABLE_GAMES) as resp:
+            result = await resp.json()
+
+            available_games = result
+            filtered_available_games = filter(
+                lambda x: (pre_form_slots[0]['platform'] in x['platforms']) and (pre_form_slots[0]['rating'] <= x['rating']) and (pre_form_slots[0]['genre'] in x['genres']) and (pre_form_slots[0]['price'] >= x['price']),
+                available_games
+            )
+            dispatcher.utter_message(text='\n'.join(map(lambda game: game['name'] + ' (Price: ' + str(game['price']) + ')', filtered_available_games)))
+
+            return [
+              SlotSet('applied_available_games', filtered_available_games),
+              SlotSet('available_games', result)
+            ]
+      
+
+      else:
+
+        filtered_available_games = filter(
+            lambda x: (pre_form_slots[0]['platform'] in x['platforms']) and (pre_form_slots[0]['rating'] <= x['rating']) and (pre_form_slots[0]['genre'] in x['genres']) and (pre_form_slots[0]['price'] >= x['price']),
+            available_games
+        )
+        dispatcher.utter_message(text='\n'.join(map(lambda game: game['name'] + ' (Price: ' + str(game['price']) + ')', filtered_available_games)))
+
+        return [
+          SlotSet('applied_available_games', filtered_available_games)
+        ]
+
+
 class ActionUpdatePreferences(Action):
 
   def name(self):

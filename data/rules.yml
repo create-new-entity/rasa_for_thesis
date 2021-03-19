@@ -85,3 +85,8 @@ rules:
   - active_loop: null
   - action: action_updated_preferences
   - action: action_reset_pre_form_slots
+
+- rule: Show preferred available games
+  steps:
+  - intent: apply_preferance_to_available_games
+  - action: action_apply_preferances_to_available_games
