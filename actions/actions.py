@@ -68,7 +68,7 @@ class ApplyPreferancesToAvailableGames(Action):
 
             available_games = result
             filtered_available_games = filter(
-                lambda x: (pre_form_slots[0]['platform'] in x['platforms']) and (pre_form_slots[0]['rating'] <= x['rating']) and (pre_form_slots[0]['genre'] in x['genres']) and (pre_form_slots[0]['price'] >= x['price']),
+                lambda x: (pre_form_slots[0]['platform'].lower() in map(lambda y: y.lower(), x['platforms'])) and (pre_form_slots[0]['rating'] <= x['rating']) and (pre_form_slots[0]['genre'].lower() in map(lambda y: y.lower(), x['genres'])) and (pre_form_slots[0]['price'] >= x['price']),
                 available_games
             )
             dispatcher.utter_message(text='\n'.join(map(lambda game: game['name'] + ' (Price: ' + str(game['price']) + ')', filtered_available_games)))
@@ -109,6 +109,9 @@ class ActionUpdatePreferences(Action):
     sto_price = float(tracker.get_slot('price'))
     sto_platform = tracker.get_slot('platform')
     sto_rating = float(tracker.get_slot('rating'))
+
+    dispatcher.utter_message(text='I have updated your preferances. Now you can apply those to available games list.')
+
 
     return [
       SlotSet('pre_form_slots', [
