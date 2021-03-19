@@ -27,6 +27,54 @@ SHOW_LIBRARY_GAMES = BASE_URL + 'show_library_games'
 PURCHASE = BASE_URL + 'purchase'
 ADD_BALANCE = BASE_URL + 'add_balance'
 
+class ResetFormSlots(Action):
+  
+  def name(self):
+    return 'action_reset_pre_form_slots'
+
+  def run(self, dispatcher, tracker, domain):
+    return [
+      SlotSet('genre', None),
+      SlotSet('price', None),
+      SlotSet('platform', None),
+      SlotSet('rating', None)
+    ]
+
+class ActionUpdatePreferences(Action):
+
+  def name(self):
+    return 'action_updated_preferences'
+
+  def run(self, dispatcher, tracker, domain):
+    print()
+    print()
+    print(type(tracker.get_slot('genre')), tracker.get_slot('genre'))
+    print(type(tracker.get_slot('price')), tracker.get_slot('price'))
+    print(type(tracker.get_slot('platform')), tracker.get_slot('platform'))
+    print(type(tracker.get_slot('rating')), tracker.get_slot('rating'))
+
+    sto_game = tracker.get_slot('genre')
+    sto_price = float(tracker.get_slot('price'))
+    sto_platform = tracker.get_slot('platform')
+    sto_rating = float(tracker.get_slot('rating'))
+
+    return [
+      SlotSet('pre_form_slots', [
+        {
+          'genre': sto_game,
+          'price': sto_price,
+          'platform': sto_platform,
+          'rating': sto_rating
+        }
+      ]),
+      SlotSet('genre', None),
+      SlotSet('price', None),
+      SlotSet('platform', None),
+      SlotSet('rating', None)
+    ]
+    
+
+
 
 class ActionRemoveFromLibrary(Action):
 

@@ -1,0 +1,16 @@
+[
+  {
+    "text": "I am going to save the world",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "game",
+        "start": 23,
+        "end": 28,
+        "confidence_entity": 0.7750115990638733,
+        "value": "world",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

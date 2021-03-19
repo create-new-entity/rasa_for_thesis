@@ -1,5 +1,4 @@
 version: "2.0"
-
 stories:
 
 - story: happy path
@@ -8,6 +7,34 @@ stories:
   - action: utter_greet
   - intent: mood_great
   - action: utter_happy
+
+- story: Story from Conversation ID fb7824ae21ff4b8198e0aae19e61c15e
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: utter_happy
+  - intent: show_available_games
+  - action: action_show_available_games
+  - intent: add_to_cart
+  - action: action_add_to_cart
+  - intent: show_cart_items
+  - action: action_show_cart
+  - intent: is_cart_affordable
+  - action: action_is_cart_affordable
+  - intent: show_library
+  - action: action_show_library
+  - intent: buy_cart_items
+  - action: action_buy_cart_items
+  - intent: show_library
+  - action: action_show_library
+  - intent: remove_game_from_library
+  - action: action_remove_game_from_library
+  - intent: show_library
+  - action: action_show_library
+  - intent: goodbye
+  - action: utter_goodbye
+
 
 - story: sad path 1
   steps:

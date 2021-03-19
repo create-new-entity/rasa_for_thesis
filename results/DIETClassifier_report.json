@@ -1,0 +1,27 @@
+{
+  "game": {
+    "precision": 0.9978118161925602,
+    "recall": 1.0,
+    "f1-score": 0.9989047097480832,
+    "support": 456,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 0.9978118161925602,
+    "recall": 1.0,
+    "f1-score": 0.9989047097480832,
+    "support": 456
+  },
+  "macro avg": {
+    "precision": 0.9978118161925602,
+    "recall": 1.0,
+    "f1-score": 0.9989047097480832,
+    "support": 456
+  },
+  "weighted avg": {
+    "precision": 0.9978118161925602,
+    "recall": 1.0,
+    "f1-score": 0.9989047097480832,
+    "support": 456
+  }
+}

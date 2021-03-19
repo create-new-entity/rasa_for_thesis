@@ -41,10 +41,23 @@ intents:
     use_entities: true
 - remove_game_from_library:
     use_entities: true
+- update_preferences:
+    use_entities: true
+- nlu_fallback:
+    use_entities: true
 entities:
 - game
 - number
+- genre
+- platform
+- price
+- rating
 slots:
+  pre_form_slots:
+    type: rasa.shared.core.slots.ListSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
   balance:
     type: rasa.shared.core.slots.FloatSlot
     initial_value: null
@@ -88,6 +101,35 @@ slots:
     initial_value: null
     auto_fill: true
     influence_conversation: true
+  genre:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  platform:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  price:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    max_value: 1.0
+    min_value: 0.0
+  rating:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    max_value: 1.0
+    min_value: 0.0
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -161,6 +203,17 @@ responses:
   utter_remove_from_library_failure:
   - text: Something went wrong, couldn't delete from library.
   - text: Something went wrong, couldn't remove from library.
+  utter_ask_preferences_form_genre:
+  - text: What kind of games do you like (e.g. Action, Adventure)? Give me one genre name
+  - text: What genre you like the most? Is it Strategy or RPG? Action may be 😎?
+  - text: What is your preferred genre of video games 🤔?
+  utter_ask_preferences_form_price:
+  - text: What should be the maximum price of the game you would buy 💸?
+  - text: Your preferred maximum price of a video game 💰?
+  utter_ask_preferences_form_platform:
+  - text: Which platform you prefer (e.g. PC, Playstation 4) 🎮?
+  utter_ask_preferences_form_rating:
+  - text: What should be the minimum rating of the video game (e.g. 4)?
 actions:
 - action_show_library
 - action_check_balance
@@ -173,5 +226,20 @@ actions:
 - action_buy_cart_items
 - action_add_money
 - action_remove_game_from_library
-forms: {}
+- action_updated_preferences
+- action_reset_pre_form_slots
+forms:
+  preferences_form:
+    genre:
+    - entity: genre
+      type: from_text
+    platform:
+    - entity: platform
+      type: from_text
+    price:
+    - entity: price
+      type: from_text
+    rating:
+    - entity: rating
+      type: from_text
 e2e_actions: []

@@ -1,0 +1,290 @@
+[
+  {
+    "text": "good afternoon",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.9091941714286804
+    }
+  },
+  {
+    "text": "good by",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.5663573145866394
+    }
+  },
+  {
+    "text": "never",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5961331129074097
+    }
+  },
+  {
+    "text": "great",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.5104790329933167
+    }
+  },
+  {
+    "text": "I am great",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.41017431020736694
+    }
+  },
+  {
+    "text": "extremely good",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.6056722402572632
+    }
+  },
+  {
+    "text": "my day was horrible",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "check_balance",
+      "confidence": 0.5936790704727173
+    }
+  },
+  {
+    "text": "Please show me my cart.",
+    "intent": "show_cart_items",
+    "intent_prediction": {
+      "name": "check_balance",
+      "confidence": 0.6676756739616394
+    }
+  },
+  {
+    "text": "Add Horizon Zero Dawn, Red Dead Redemption 2 to cart",
+    "intent": "add_to_cart",
+    "intent_prediction": {
+      "name": "remove_from_cart",
+      "confidence": 0.8205564022064209
+    }
+  },
+  {
+    "text": "Remove Horizon Zero Dawn, Red Dead Redemption 2 from library",
+    "intent": "remove_game_from_library",
+    "intent_prediction": {
+      "name": "remove_from_cart",
+      "confidence": 0.6182780265808105
+    }
+  },
+  {
+    "text": "let's go",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.39276123046875
+    }
+  },
+  {
+    "text": "good night",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.4897277355194092
+    }
+  },
+  {
+    "text": "correct",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.6622392535209656
+    }
+  },
+  {
+    "text": "n",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5821295976638794
+    }
+  },
+  {
+    "text": "super stoked",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.6730520129203796
+    }
+  },
+  {
+    "text": "I don't feel very well",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.5821614265441895
+    }
+  },
+  {
+    "text": "Show me the list of games in my cart.",
+    "intent": "show_cart_items",
+    "intent_prediction": {
+      "name": "show_library",
+      "confidence": 0.7439849972724915
+    }
+  },
+  {
+    "text": "hi",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.5992001295089722
+    }
+  },
+  {
+    "text": "moin",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.48823651671409607
+    }
+  },
+  {
+    "text": "cu",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5942016839981079
+    }
+  },
+  {
+    "text": "of course",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "is_cart_affordable",
+      "confidence": 0.3979535400867462
+    }
+  },
+  {
+    "text": "What games are in my cart?",
+    "intent": "show_cart_items",
+    "intent_prediction": {
+      "name": "show_library",
+      "confidence": 0.5933735370635986
+    }
+  },
+  {
+    "text": "Remove all items from cart",
+    "intent": "remove_all_from_cart",
+    "intent_prediction": {
+      "name": "remove_from_cart",
+      "confidence": 0.7314189076423645
+    }
+  },
+  {
+    "text": "Can I afford the games in my cart?",
+    "intent": "is_cart_affordable",
+    "intent_prediction": {
+      "name": "buy_cart_items",
+      "confidence": 0.5989411473274231
+    }
+  },
+  {
+    "text": "Checkout the items in my cart.",
+    "intent": "buy_cart_items",
+    "intent_prediction": {
+      "name": "is_cart_affordable",
+      "confidence": 0.517266035079956
+    }
+  },
+  {
+    "text": "have a nice day",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.6040869951248169
+    }
+  },
+  {
+    "text": "indeed",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.4511707127094269
+    }
+  },
+  {
+    "text": "I am going to save the world",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "add_to_cart",
+      "confidence": 0.44963371753692627
+    }
+  },
+  {
+    "text": "Show me my library.",
+    "intent": "show_library",
+    "intent_prediction": {
+      "name": "remove_game_from_library",
+      "confidence": 0.8015903830528259
+    }
+  },
+  {
+    "text": "What games do I have in the cart?",
+    "intent": "show_cart_items",
+    "intent_prediction": {
+      "name": "show_library",
+      "confidence": 0.7018627524375916
+    }
+  },
+  {
+    "text": "good afternoon",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.8841183185577393
+    }
+  },
+  {
+    "text": "that sounds good",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.5283699631690979
+    }
+  },
+  {
+    "text": "not really",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.7638409733772278
+    }
+  },
+  {
+    "text": "so good",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.6322686076164246
+    }
+  },
+  {
+    "text": "What are the games do I have?",
+    "intent": "show_library",
+    "intent_prediction": {
+      "name": "show_cart_items",
+      "confidence": 0.8105296492576599
+    }
+  },
+  {
+    "text": "Show me my balance please",
+    "intent": "check_balance",
+    "intent_prediction": {
+      "name": "show_library",
+      "confidence": 0.6424100995063782
+    }
+  }
+]

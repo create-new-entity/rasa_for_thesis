@@ -67,3 +67,21 @@ rules:
   steps:
   - intent: remove_game_from_library
   - action: action_remove_game_from_library
+
+
+- rule: Activate form
+  condition:
+  - active_loop: null
+  steps:
+  - intent: update_preferences
+  - action: preferences_form
+  - active_loop: preferences_form
+
+- rule: Form filled up
+  condition:
+  - active_loop: preferences_form
+  steps:
+  - action: preferences_form
+  - active_loop: null
+  - action: action_updated_preferences
+  - action: action_reset_pre_form_slots
