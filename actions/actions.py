@@ -26,6 +26,23 @@ SHOW_AVAILABLE_GAMES = BASE_URL + 'show_available_games'
 SHOW_LIBRARY_GAMES = BASE_URL + 'show_library_games'
 PURCHASE = BASE_URL + 'purchase'
 ADD_BALANCE = BASE_URL + 'add_balance'
+REMOVE_LIBRARY = BASE_URL + 'remove_library'
+
+
+class RemoveLibraryAction(Action):
+
+  def name(self):
+    return 'action_remove_library'
+
+  async def run(self, dispatcher, tracker, domain):
+    data = {}
+    async with aiohttp.ClientSession() as session:
+      async with session.post(REMOVE_LIBRARY, data=data) as resp:
+        if(resp.status == 200):
+          dispatcher.utter_message(template='utter_removed_library_success')
+        else:
+          dispatcher.utter_message(template='utter_removed_library_failure')
+
 
 class ResetFormSlots(Action):
   
@@ -156,10 +173,11 @@ class ActionRemoveFromLibrary(Action):
       async with session.post(REMOVE_FROM_LIBRARY, data=data) as resp:
         response = await resp.json()
         if(resp.status == 200):
-          dispatcher.utter_message(template='utter_remove_from_library_success')
           if(len(response['library'])):
+            dispatcher.utter_message(template='utter_remove_from_library_success')
             return [SlotSet('library_games', response['library'])]
           else:
+            dispatcher.utter_message(text='Removed and your library is empty now.')
             return [SlotSet('library_games', None)]
         else:
           dispatcher.utter_message(template='utter_remove_from_library_failure')
@@ -400,10 +418,12 @@ class ActionShowLibrary(Action):
     async with aiohttp.ClientSession() as session:
       async with session.get(SHOW_LIBRARY_GAMES) as resp:
         result = await resp.json()
-        if(result['library'] and len(result['library'])):
-          dispatcher.utter_message(text='\n'.join(pydash.map_(result['library'], 'name')))
-          return [SlotSet("library_games", result['library'])]
+        if(result['library']):
+          if(result['library'] and len(result['library'])):
+            dispatcher.utter_message(text='\n'.join(pydash.map_(result['library'], 'name')))
+            return [SlotSet("library_games", result['library'])]
         else:
+          dispatcher.utter_message(text='Your library is empty.')
           return [SlotSet("library_games", None)]
 
 

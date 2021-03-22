@@ -47,6 +47,8 @@ intents:
     use_entities: true
 - apply_preferance_to_available_games:
     use_entities: true
+- remove_library:
+    use_entities: []
 entities:
 - game
 - number
@@ -221,6 +223,15 @@ responses:
   - text: Which platform you prefer (e.g. PC, Playstation 4) 🎮?
   utter_ask_preferences_form_rating:
   - text: What should be the minimum rating of the video game (e.g. 4)?
+  utter_removed_library_success:
+  - text: I've removed all games from your library.
+  - text: Library has been nuked.
+  - text: Library cleared.
+  - text: Deleted all games from your library.
+  utter_removed_library_failure:
+  - text: Something went wrong. I couldn't delete your library.
+  - text: Couldn't nuke your library.
+  - text: Sorry. Couldn't delete your library games. Something went wrong.
 actions:
 - action_show_library
 - action_check_balance
@@ -236,6 +247,7 @@ actions:
 - action_updated_preferences
 - action_reset_pre_form_slots
 - action_apply_preferances_to_available_games
+- action_remove_library
 forms:
   preferences_form:
     genre:

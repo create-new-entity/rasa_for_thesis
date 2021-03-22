@@ -90,3 +90,8 @@ rules:
   steps:
   - intent: apply_preferance_to_available_games
   - action: action_apply_preferances_to_available_games
+
+- rule: Remove library
+  steps:
+  - intent: remove_library
+  - action: action_remove_library
