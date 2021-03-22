@@ -90,6 +90,9 @@ nlu:
     - Please show me my games
     - Please list the games I own
     - Show me my library.
+    - What games do I have in my library?
+    - Show me my library
+    - What games do I have?
 - intent: check_balance
   examples: |
     - Show me my balance please
@@ -141,12 +144,9 @@ nlu:
     - Add [Assassin’s Creed IV: Black Flag](game) to cart.
     - Add [Monster Hunter: World](game) to cart
     - Add [Kingdom Come: Deliverance](game) to cart
-    - Add [DOOM Eternal](game) to cart
-    - Add [Sleeping Dogs: Definitive Edition](game) to cart
-    - Add [Ryse: Son of Rome](game) to cart
     - Add [Dark Souls: Remastered](game) to cart
     - Add [Vampyr](game) to cart
-    - Add [A Plague Tale: Innocence](game) to cart
+    - Add [RAGE](game) to cart.
 - intent: remove_from_cart
   examples: |
     - Delete [Dark Souls: Remastered](game), [Vampyr](game), [Ryse: Son of Rome](game) and [BioShock](game) from cart.
@@ -170,25 +170,14 @@ nlu:
     - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
     - Remove [Vampyr](game) from cart
     - Remove [Darksiders](game) from cart
-    - Remove [Ryse: Son of Rome](game) from cart
     - Remove [Vampyr](game) and [Ryse: Son of Rome](game) from cart
     - Remove [Ghost of Tsushima](game), [Vampyr](game) and [Ryse: Son of Rome](game) from cart
-    - Remove [Ghost of Tsushima](game) from cart
-    - Remove [Darksiders](game), [Vampyr](game) from cart
-    - Remove [Horizon Zero Dawn](game), [Red Dead Redemption 2](game) from cart
     - Delete [Grand Theft Auto V](game) from cart
     - Remove [Hellblade: Senua's Sacrifice](game) from cart
-    - Remove [The Witcher 3: Wild Hunt](game) and [Ryse: Son of Rome](game) from cart
     - Remove [Ryse: Son of Rome](game) and [L.A. Noire](game) from cart
-    - Remove [L.A. Noire](game) from cart
-    - Remove [DOOM Eternal](game) from cart
     - Remove [A Plague Tale: Innocence](game) from cart
-    - Remove [Spec Ops: The Line](game) and [Assassin’s Creed IV: Black Flag](game) from cart
-    - Remove [Assassin’s Creed IV: Black Flag](game) from cart
-    - Remove [Sleeping Dogs: Definitive Edition](game) from cart
     - Remove [Dark Souls: Remastered](game), [Vampyr](game), [Ryse: Son of Rome](game) and [BioShock](game) from cart.
     - Remove [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
-    - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from cart
     - Remove [Vampyr](game), [Battlefield: Bad Company 2](game) and [Darksiders](game) from my cart.
     - Remove [The Legend of Zelda: Breath of the Wild](game) from cart.
     - Remove [The Witcher 3: Wild Hunt](game) from cart
@@ -197,12 +186,7 @@ nlu:
     - Remove [Assassin’s Creed IV: Black Flag](game) from cart.
     - Remove [Monster Hunter: World](game) from cart
     - Remove [Kingdom Come: Deliverance](game) from cart
-    - Remove [DOOM Eternal](game) from cart
-    - Remove [Sleeping Dogs: Definitive Edition](game) from cart
-    - Remove [Ryse: Son of Rome](game) from cart
     - Remove [Dark Souls: Remastered](game) from cart
-    - Remove [Vampyr](game) from cart
-    - Remove [A Plague Tale: Innocence](game) from cart
 - intent: remove_game_from_library
   examples: |
     - Remove [Darksiders](game) from library
@@ -226,6 +210,14 @@ nlu:
     - Delete [A Plague Tale: Innocence](game) and [L.A. Noire](game) from library
     - Remove [Ryse: Son of Rome](game), [A Plague Tale: Innocence](game) and [L.A. Noire](game) from library
     - Remove [Vampyr](game) from library
+- intent: remove_library
+  examples: |
+    - Delete my entire library.
+    - Remove all games from my library.
+    - Remove my library.
+    - Nuke my library.
+    - Get rid of all games from my library.
+    - Nuke  my library.
 - intent: remove_all_from_cart
   examples: |
     - Please delete my cart
@@ -260,4 +252,21 @@ nlu:
   examples: |
     - Add [10](number) euros to my account.
     - Add [100](number) bucks to my balance.
-    - Include [50](number) bucks to my account. 
+    - Include [50](number) bucks to my account.
+- intent: update_preferences
+  examples: |
+    - I would like to update my preferences.
+    - Please update my preferences.
+    - Change my preferences.
+    - Let's change my preferences.
+- intent: nlu_fallback
+  examples: |
+    - [Action](genre)
+    - [RPG](genre)
+- intent: apply_preferance_to_available_games
+  examples: |
+    - Filter available games using my preferances.
+    - Show available games based on my preferances.
+    - Show me available games according to my taste.
+    - Show me available games according to my preferances.
+    - Show me available games and take my preferences into account.
