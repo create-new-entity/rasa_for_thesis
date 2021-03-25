@@ -11,9 +11,10 @@ import pydash
 
 from typing import Any, Text, Dict, List
 
-from rasa_sdk import Action, Tracker
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
+from rasa_sdk.types import DomainDict
 
 BASE_URL = 'http://localhost:3009/thesis_bot_backend/common/'
 
@@ -27,7 +28,74 @@ SHOW_LIBRARY_GAMES = BASE_URL + 'show_library_games'
 PURCHASE = BASE_URL + 'purchase'
 ADD_BALANCE = BASE_URL + 'add_balance'
 REMOVE_LIBRARY = BASE_URL + 'remove_library'
+IS_GENRE_CORRECT = BASE_URL + 'is_genre_correct'
+IS_PLATFORM_CORRECT = BASE_URL + 'is_platform_correct'
 
+
+class ValidatePreferencesForm(FormValidationAction):
+
+  def name(self):
+    return 'validate_preferences_form'
+    
+  async def validate_genre(
+      self,
+      slot_value: Any,
+      dispatcher: CollectingDispatcher,
+      tracker: Tracker,
+      domain: DomainDict
+    ):
+    async with aiohttp.ClientSession() as session:
+      async with session.get(IS_GENRE_CORRECT, data={"genre": slot_value}) as resp:
+        response = await resp.json()
+        if(response['correct']):
+          return { 'genre': slot_value }
+        else:
+          dispatcher.utter_message(template='utter_preferences_form_wrong_genre')
+          return { 'genre': None }
+
+  async def validate_platform(
+    self,
+    slot_value: Any,
+    dispatcher: CollectingDispatcher,
+    tracker: Tracker,
+    domain: DomainDict
+  ):
+    async with aiohttp.ClientSession() as session:
+      async with session.get(IS_PLATFORM_CORRECT, data={"platform": slot_value}) as resp:
+        response = await resp.json()
+        if(response['correct']):
+          return { 'platform': slot_value }
+        else:
+          dispatcher.utter_message(template='utter_preferences_form_wrong_platform')
+          return { 'platform': None }
+
+  def validate_price(
+    self,
+    slot_value: Any,
+    dispatcher: CollectingDispatcher,
+    tracker: Tracker,
+    domain: DomainDict
+  ):
+    if(slot_value.isnumeric()):
+      return { 'price': slot_value }
+    else:
+      dispatcher.utter_message(template='utter_preferences_form_wrong_price')
+      return { 'price': None }
+
+  def validate_rating(
+    self,
+    slot_value: Any,
+    dispatcher: CollectingDispatcher,
+    tracker: Tracker,
+    domain: DomainDict
+  ):
+    if(slot_value.isnumeric()):
+      return { 'rating': slot_value }
+    else:
+      dispatcher.utter_message(template='utter_preferences_form_wrong_rating')
+      return { 'rating': None }
+
+    
 
 class RemoveLibraryAction(Action):
 
@@ -115,12 +183,6 @@ class ActionUpdatePreferences(Action):
     return 'action_updated_preferences'
 
   def run(self, dispatcher, tracker, domain):
-    print()
-    print()
-    print(type(tracker.get_slot('genre')), tracker.get_slot('genre'))
-    print(type(tracker.get_slot('price')), tracker.get_slot('price'))
-    print(type(tracker.get_slot('platform')), tracker.get_slot('platform'))
-    print(type(tracker.get_slot('rating')), tracker.get_slot('rating'))
 
     sto_game = tracker.get_slot('genre')
     sto_price = float(tracker.get_slot('price'))
@@ -440,17 +502,4 @@ class ActionShowAvailableGames(Action):
           dispatcher.utter_message(text='\n'.join(map(lambda game: game['name'] + ' (Price: ' + str(game['price']) + ')', result)))
           return [SlotSet("available_games", result)]
 
-#
-#
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
+

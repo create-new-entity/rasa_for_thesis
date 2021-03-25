@@ -232,6 +232,18 @@ responses:
   - text: Something went wrong. I couldn't delete your library.
   - text: Couldn't nuke your library.
   - text: Sorry. Couldn't delete your library games. Something went wrong.
+  utter_preferences_form_wrong_genre:
+  - text: Incorrect genre. Please enter something valid.
+  - text: Wrong genre. Give me a valid genre name please.
+  utter_preferences_form_wrong_price:
+  - text: Price should be something numerical.
+  - text: Please enter a correct value.
+  utter_preferences_form_wrong_platform:
+  - text: Wrong platform..enter something valid please.
+  - text: Incorrect platform name. Enter something valid please.
+  utter_preferences_form_wrong_rating:
+  - text: Rating should be something numerical.
+  - text: Please enter a correct numerical rating value.
 actions:
 - action_show_library
 - action_check_balance
@@ -248,6 +260,7 @@ actions:
 - action_reset_pre_form_slots
 - action_apply_preferances_to_available_games
 - action_remove_library
+- validate_preferences_form
 forms:
   preferences_form:
     genre:
